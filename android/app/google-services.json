@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "331542575408",
+    "project_id": "proyecto1-c6d40",
+    "storage_bucket": "proyecto1-c6d40.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:331542575408:android:9dcfe2d6ec98629b15b0f5",
+        "android_client_info": {
+          "package_name": "mx.edu.ittepic.dam_u4_proyecto1_18401084"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "331542575408-rsijlidrt7j86vvp7s02oc21s91fgt8j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCd4z-rcJLKRUz5g6DwvVI34j0Jt1Uorls"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "331542575408-rsijlidrt7j86vvp7s02oc21s91fgt8j.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "331542575408-2iqn9927o60dcn0ubicjppldrudmf35g.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "mx.edu.ittepic.damU4Proyecto118401084"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
