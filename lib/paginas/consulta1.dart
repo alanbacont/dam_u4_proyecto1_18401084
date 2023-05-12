@@ -18,11 +18,11 @@ class _BusquedaPorPlacaScreenState extends State<BusquedaPorPlacaScreen> {
         title: const Text(
           'Buscar bitácoras por placa',
           style: TextStyle(
-            color: Colors.black,  // change the color of the title
-            fontFamily: 'SanFrancisco', // change the font family
+            color: Colors.black,
+            fontFamily: 'SanFrancisco',
           ),
         ),
-        backgroundColor: Colors.grey[200],  // change the background color
+        backgroundColor: Colors.grey[200],
         elevation: 0,
       ),
       body: Padding(
@@ -40,12 +40,12 @@ class _BusquedaPorPlacaScreenState extends State<BusquedaPorPlacaScreen> {
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.indigo[400],
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10), // Borde redondeado
+                  borderRadius: BorderRadius.circular(10),
                 ),
-                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15), // Cambiar el padding
+                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
                 textStyle: TextStyle(
-                  fontSize: 18, // Cambiar el tamaño del texto
-                  fontWeight: FontWeight.bold, // Cambiar la negrita
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
               child: Text('Buscar'),

@@ -41,16 +41,16 @@ class _PaginaPrincipalState extends State<PaginaPrincipal> {
         centerTitle: true,
         backgroundColor: Colors.deepOrangeAccent,
         leading: Container(
-          width: 90, // Define el ancho de la imagen
-          height: 90, // Define la altura de la imagen
+          width: 90,
+          height: 90,
           child: Image.asset('assets/images/Logo TecNM.png'),
         ),
         actions: <Widget>[
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Container(
-              width: 100, // Define el ancho de la imagen
-              height: 100, // Define la altura de la imagen
+              width: 100,
+              height: 100,
               child: Image.asset('assets/images/ITTepic.png'),
             ),
           )

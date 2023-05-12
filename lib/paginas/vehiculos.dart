@@ -34,13 +34,13 @@ class _PaginaVehiculosState extends State<PaginaVehiculos> {
                 itemCount: snapshot.data?.length,
                 itemBuilder: (context, index) {
                   return ListTile(
-                    leading: Icon(Icons.directions_car, size: 50, color: Colors.black87,),  // Un icono que representa el vehículo
+                    leading: Icon(Icons.directions_car, size: 50, color: Colors.black87,),
                     title: Text(snapshot.data?[index]['placa'] ?? 'No disponible',
-                      style: TextStyle(fontWeight: FontWeight.bold),), // La placa del vehículo
+                      style: TextStyle(fontWeight: FontWeight.bold),),
                     subtitle: Text(
                         'Departamento: ${snapshot.data?[index]['depto'] ?? 'No disponible'} \n'
                             'Trabajador: ${snapshot.data?[index]['trabajador'] ?? 'No disponible'} \n'
-                            'Tipo: ${snapshot.data?[index]['tipo'] ?? 'No disponible'}' // El departamento y el trabajador
+                            'Tipo: ${snapshot.data?[index]['tipo'] ?? 'No disponible'}'
                     ),
                     onTap: (){
                       showDialog(

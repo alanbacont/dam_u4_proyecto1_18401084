@@ -35,7 +35,6 @@ class _PaginaBitacorasState extends State<PaginaBitacoras> {
                 itemBuilder: (context, index) {
                   return InkWell(
                     onTap: () {
-                      // Aquí puedes ejecutar la función que quieras cuando el usuario toque la tarjeta
                       print("Card seleccionada: ${snapshot.data?[index]['uid']}");
 
                       // Llamar al modal bottom sheet
@@ -74,7 +73,7 @@ class _PaginaBitacorasState extends State<PaginaBitacoras> {
                                   onPressed: () async {
                                     await actualizarBitacora(
                                       vehiculoId,
-                                      snapshot.data?[index]['uid'], // asumimos que uid es el ID de la bitácora
+                                      snapshot.data?[index]['uid'],
                                       verificoController.text,
                                       fechaverificacion,
                                     );
