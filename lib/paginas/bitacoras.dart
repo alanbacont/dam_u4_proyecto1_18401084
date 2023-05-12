@@ -109,7 +109,7 @@ class _PaginaBitacorasState extends State<PaginaBitacoras> {
                             Text(
                               'Fecha: ${(snapshot.data?[index]['fecha'] as Timestamp)?.toDate().toString() ?? 'No disponible'}',
                               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.indigo[400]),
-                            ), // La fecha de la bitácora
+                            ),
                             Divider(color: Colors.grey),
                             Text(
                               'Evento: ${snapshot.data?[index]['evento'] ?? 'No disponible'}',
