@@ -1,4 +1,3 @@
-import 'package:dam_u4_proyecto1_18401084/paginas/bitacoras.dart';
 import 'package:dam_u4_proyecto1_18401084/paginas/consulta1.dart';
 import 'package:dam_u4_proyecto1_18401084/paginas/consulta2.dart';
 import 'package:dam_u4_proyecto1_18401084/paginas/insertar_vehiculo.dart';
@@ -26,7 +25,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Coche Tec',
       theme: ThemeData(
-          primarySwatch: Colors.deepOrange,
+          primarySwatch: Colors.indigo,
           visualDensity: VisualDensity.adaptivePlatformDensity,
           elevatedButtonTheme: ElevatedButtonThemeData(
               style: ButtonStyle(

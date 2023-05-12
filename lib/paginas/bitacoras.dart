@@ -22,8 +22,9 @@ class _PaginaBitacorasState extends State<PaginaBitacoras> {
     String vehiculoId = widget.vehiculoId;
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Bitácoras de uso Vehicular"),
+        title: const Text("Bitácora de uso Vehicular"),
         centerTitle: true,
+        backgroundColor: Colors.deepOrange,
       ),
       body: FutureBuilder(
           future: getBitacoras(widget.vehiculoId),
@@ -40,17 +41,24 @@ class _PaginaBitacorasState extends State<PaginaBitacoras> {
                         context: context,
                         builder: (BuildContext context) {
                           return Padding(
-                            padding: const EdgeInsets.all(20),
+                            padding: const EdgeInsets.all(60),
                             child: Column(
+                              mainAxisSize: MainAxisSize.min,
                               children: <Widget>[
                                 TextField(
                                   controller: verificoController,
-                                  decoration: const InputDecoration(
-                                    icon: Icon(Icons.person),
+                                  decoration: InputDecoration(
+                                    icon: Icon(Icons.verified_user, color: Colors.indigo[400]),
                                     labelText: 'Verificó',
+                                    labelStyle: TextStyle(fontSize: 18),
+                                    border: OutlineInputBorder(),
                                   ),
                                 ),
+                                SizedBox(height: 20,),
                                 ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.indigo[400],
+                                  ),
                                   child: Text('Seleccionar fecha de verificación'),
                                   onPressed: () async {
                                     DateTime? selectedDate = await showDatePicker(
@@ -66,8 +74,13 @@ class _PaginaBitacorasState extends State<PaginaBitacoras> {
                                     }
                                   },
                                 ),
+                                SizedBox(height: 30,),
                                 ElevatedButton(
-                                  child: Text('Actualizar Bitácora'),
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.indigo[400],
+                                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                                  ),
+                                  child: Text('Actualizar Bitácora', style: TextStyle(fontSize: 18)),
                                   onPressed: () async {
                                     await actualizarBitacora(
                                       vehiculoId,
@@ -85,34 +98,37 @@ class _PaginaBitacorasState extends State<PaginaBitacoras> {
                       );
                     },
                     child: Card(
+                      elevation: 8.0, // Agrega una sombra a la tarjeta
+                      margin: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)), // Agrega bordes redondeados
                       child: Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.all(12.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text(
                               'Fecha: ${(snapshot.data?[index]['fecha'] as Timestamp)?.toDate().toString() ?? 'No disponible'}',
-                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.indigo[400]),
                             ), // La fecha de la bitácora
-                            SizedBox(height: 10,),
+                            Divider(color: Colors.grey),
                             Text(
-                                'Evento: ${snapshot.data?[index]['evento'] ?? 'No disponible'}',
-                                style: TextStyle(fontSize: 16)
+                              'Evento: ${snapshot.data?[index]['evento'] ?? 'No disponible'}',
+                              style: TextStyle(fontSize: 16, color: Colors.grey[800]),
                             ),
                             SizedBox(height: 10,),
                             Text(
-                                'Recursos: ${snapshot.data?[index]['recursos'] ?? 'No disponible'}',
-                                style: TextStyle(fontSize: 16)
+                              'Recursos: ${snapshot.data?[index]['recursos'] ?? 'No disponible'}',
+                              style: TextStyle(fontSize: 16, color: Colors.grey[800]),
                             ),
                             SizedBox(height: 10,),
                             Text(
-                                'Verificó: ${snapshot.data?[index]['verifico'] ?? 'No disponible'}',
-                                style: TextStyle(fontSize: 16)
+                              'Verificó: ${snapshot.data?[index]['verifico'] ?? 'No disponible'}',
+                              style: TextStyle(fontSize: 16, color: Colors.grey[800]),
                             ),
                             SizedBox(height: 10,),
                             Text(
-                                'Fecha Verificación: ${(snapshot.data?[index]['fechaverificacion'] as Timestamp).toDate().toString() ?? 'No disponible'}',
-                                style: TextStyle(fontSize: 16)
+                              'Fecha Verificación: ${(snapshot.data?[index]['fechaverificacion'] as Timestamp).toDate().toString() ?? 'No disponible'}',
+                              style: TextStyle(fontSize: 16, color: Colors.grey[800]),
                             ),
                           ],
                         ),

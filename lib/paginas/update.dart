@@ -45,61 +45,87 @@ class _ActualizarVehiculoState extends State<ActualizarVehiculo> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Actualizar Vehiculo'),
+        elevation: 0,
         backgroundColor: Colors.deepOrange,
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
           children: <Widget>[
-            TextField(
+            TextFormField(
               controller: combustiblecontroller,
-              decoration: const InputDecoration(
-                  icon: Icon(Icons.local_gas_station),
-                  labelText: 'Tipo de Combustible'
+              decoration: InputDecoration(
+                labelText: 'Tipo de Combustible',
+                prefixIcon: Icon(Icons.local_gas_station, color: Colors.indigo[400]),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(20.0),
+                ),
               ),
             ),
-            TextField(
+            SizedBox(height: 10,),
+            TextFormField(
               controller: dptocontroller,
-              decoration: const InputDecoration(
-                  icon: Icon(Icons.work),
-                  labelText: 'Departamento'
+              decoration: InputDecoration(
+                labelText: 'Departamento',
+                prefixIcon: Icon(Icons.work, color: Colors.indigo[400]),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(20.0),
+                ),
               ),
             ),
-            TextField(
+            SizedBox(height: 10,),
+            TextFormField(
               controller: nseriecontroller,
-              decoration: const InputDecoration(
-                  icon: Icon(Icons.abc),
-                  labelText: 'Numero de serie'
+              decoration: InputDecoration(
+                labelText: 'Numero de serie',
+                prefixIcon: Icon(Icons.abc, color: Colors.indigo[400]),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(20.0),
+                ),
               ),
             ),
-            TextField(
+            SizedBox(height: 10,),
+            TextFormField(
               controller: placacontroller,
-              decoration: const InputDecoration(
-                  icon: Icon(Icons.abc_sharp),
-                  labelText: 'Placa'
+              decoration: InputDecoration(
+                labelText: 'Placa',
+                prefixIcon: Icon(Icons.abc_sharp, color: Colors.indigo[400]),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(20.0),
+                ),
               ),
             ),
-            TextField(
+            SizedBox(height: 10,),
+            TextFormField(
               controller: resguardadocontroller,
-              decoration: const InputDecoration(
-                  icon: Icon(Icons.person_search),
-                  labelText: 'Resguardado por'
+              decoration: InputDecoration(
+                labelText: 'Resguardado por',
+                prefixIcon: Icon(Icons.person_search, color: Colors.indigo[400]),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(20.0),
+                ),
               ),
             ),
-            TextField(
+            SizedBox(height: 10,),
+            TextFormField(
               controller: tanquecontroller,
-              decoration: const InputDecoration(
-                  icon: Icon(Icons.car_crash),
-                  labelText: 'Tanque'
+              decoration: InputDecoration(
+                labelText: 'Tanque',
+                prefixIcon: Icon(Icons.car_crash, color: Colors.indigo[400]),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(20.0),
+                ),
               ),
             ),
             SizedBox(height: 10,),
             DropdownButtonFormField<String>(
               value: tipo,
               decoration: InputDecoration(
-                icon: Icon(Icons.car_repair),
                 labelText: "Tipo de Vehiculo",
-                border: OutlineInputBorder(),
+                prefixIcon: Icon(Icons.car_repair, color: Colors.indigo[400]),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(20.0),
+                ),
               ),
               style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
               items: <String>['Camion', 'Coche', 'Camioneta',
@@ -116,23 +142,39 @@ class _ActualizarVehiculoState extends State<ActualizarVehiculo> {
               },
             ),
             SizedBox(height: 10,),
-            TextField(
+            TextFormField(
               controller: trabajadorcontroller,
-              decoration: const InputDecoration(
-                  icon: Icon(Icons.person),
-                  labelText: 'Nombre Trabajador'
+              decoration: InputDecoration(
+                labelText: 'Nombre Trabajador',
+                prefixIcon: Icon(Icons.person, color: Colors.indigo[400]),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(20.0),
+                ),
               ),
             ),
-            SizedBox(height: 10,),
+            SizedBox(height: 20,),
             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.indigo[400],
+                textStyle: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                ),
+                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(50.0),
+                ),
+              ),
               onPressed: () async{
-              await actualizarVehiculo(arguments['uid'], int.parse(tanquecontroller.text), combustiblecontroller.text,
-                  dptocontroller.text, nseriecontroller.text, placacontroller.text,
-                  resguardadocontroller.text, selectedTipo, trabajadorcontroller.text)
-                  .then((_) {
-                Navigator.pop(context);
-              });
-            }, child: const Text("Actualizar"), )
+                await actualizarVehiculo(arguments['uid'], int.parse(tanquecontroller.text), combustiblecontroller.text,
+                    dptocontroller.text, nseriecontroller.text, placacontroller.text,
+                    resguardadocontroller.text, selectedTipo, trabajadorcontroller.text)
+                    .then((_) {
+                  Navigator.pop(context);
+                });
+              },
+              child: const Text("Actualizar"),
+            )
           ],
         ),
       ),

@@ -1,3 +1,4 @@
+import 'package:dam_u4_proyecto1_18401084/paginas/buscar_por_depto.dart';
 import 'package:dam_u4_proyecto1_18401084/paginas/consulta1.dart';
 import 'package:dam_u4_proyecto1_18401084/paginas/consulta2.dart';
 import 'package:dam_u4_proyecto1_18401084/paginas/vehiculos.dart';
@@ -16,6 +17,7 @@ class _PaginaPrincipalState extends State<PaginaPrincipal> {
     PaginaVehiculos(),
     BusquedaPorFechaScreen(),
     BusquedaPorPlacaScreen(),
+    BusquedaPorDepartamentoScreen(),
   ];
 
   void onTabTapped(int index) {
@@ -28,9 +30,12 @@ class _PaginaPrincipalState extends State<PaginaPrincipal> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        toolbarHeight: 100,
         title: const Text("cocheTec",
           style: TextStyle(
             color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 32
           ),
         ),
         shape: RoundedRectangleBorder(
@@ -39,18 +44,13 @@ class _PaginaPrincipalState extends State<PaginaPrincipal> {
           ),
         ),
         centerTitle: true,
-        backgroundColor: Colors.deepOrangeAccent,
-        leading: Container(
-          width: 90,
-          height: 90,
-          child: Image.asset('assets/images/Logo TecNM.png'),
-        ),
+        backgroundColor: Colors.deepOrange,
         actions: <Widget>[
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(1.0),
             child: Container(
-              width: 100,
-              height: 100,
+              width: 90,
+              height: 90,
               child: Image.asset('assets/images/ITTepic.png'),
             ),
           )
@@ -71,14 +71,20 @@ class _PaginaPrincipalState extends State<PaginaPrincipal> {
             icon: _currentIndex == 1 ?
             Icon(Icons.date_range, size: 35) :
             Icon(Icons.date_range, size: 20),
-            label: 'Por fecha',
+            label: 'Bitacora Por fecha',
           ),
           BottomNavigationBarItem(
             icon: _currentIndex == 2 ?
             Icon(Icons.manage_search, size: 35) :
             Icon(Icons.manage_search, size: 20),
-            label: 'Por placa',
+            label: 'Bitacora Por placa',
           ),
+          BottomNavigationBarItem(
+            icon: _currentIndex == 3 ?
+            Icon(Icons.apartment, size: 35) :
+            Icon(Icons.apartment, size: 20),
+            label: 'Vehiculo por Depto.',
+          )
         ],
         selectedItemColor: Colors.indigo[800],
         unselectedItemColor: Colors.grey,

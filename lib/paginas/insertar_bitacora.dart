@@ -32,27 +32,38 @@ class _InsertarBitacoraState extends State<InsertarBitacora> {
           children: <Widget>[
             TextField(
               controller: eventocontroller,
-              decoration: const InputDecoration(
-                  icon: Icon(Icons.event),
-                  labelText: 'Evento'
-              ),
-            ),
-            TextField(
-              controller: recursoscontroller,
-              decoration: const InputDecoration(
-                  icon: Icon(Icons.list),
-                  labelText: 'Recursos'
-              ),
-            ),
-            TextField(
-              controller: verificocontroller,
-              decoration: const InputDecoration(
-                  icon: Icon(Icons.person),
-                  labelText: 'Verificó'
+              decoration: InputDecoration(
+                icon: Icon(Icons.event, color: Colors.indigo[400]),
+                labelText: 'Evento',
+                labelStyle: TextStyle(fontSize: 16),
+                border: OutlineInputBorder(),
               ),
             ),
             SizedBox(height: 10,),
-            TextButton(
+            TextField(
+              controller: recursoscontroller,
+              decoration: InputDecoration(
+                icon: Icon(Icons.format_list_bulleted, color: Colors.indigo[400]),
+                labelText: 'Recursos',
+                labelStyle: TextStyle(fontSize: 16),
+                border: OutlineInputBorder(),
+              ),
+            ),
+            SizedBox(height: 10,),
+            TextField(
+              controller: verificocontroller,
+              decoration: InputDecoration(
+                icon: Icon(Icons.verified_user, color: Colors.indigo[400]),
+                labelText: 'Verificó',
+                labelStyle: TextStyle(fontSize: 16),
+                border: OutlineInputBorder(),
+              ),
+            ),
+            SizedBox(height: 10,),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.indigo[400],
+              ),
               onPressed: () async {
                 final DateTime? picked = await showDatePicker(
                   context: context,
@@ -67,7 +78,11 @@ class _InsertarBitacoraState extends State<InsertarBitacora> {
               },
               child: Text('Seleccionar Fecha: ${DateFormat.yMd().format(selectedFecha)}'),
             ),
-            TextButton(
+            SizedBox(height: 10,),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.indigo[400],
+              ),
               onPressed: () async {
                 final DateTime? picked = await showDatePicker(
                   context: context,
@@ -82,17 +97,28 @@ class _InsertarBitacoraState extends State<InsertarBitacora> {
               },
               child: Text('Seleccionar Fecha de Verificación: ${DateFormat.yMd().format(selectedFechaVerificacion)}'),
             ),
-            ElevatedButton(onPressed: () async{
-              await insertarBitacora(widget.vehiculoId, {
-                "evento": eventocontroller.text,
-                "recursos": recursoscontroller.text,
-                "verifico": verificocontroller.text,
-                "fecha": selectedFecha,
-                "fechaverificacion": selectedFechaVerificacion,
-              }).then((_) {
-                Navigator.pop(context);
-              });
-            }, child: const Text("Insertar"))
+            SizedBox(height: 10,),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.indigo[400],
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              ),
+              onPressed: () async{
+                await insertarBitacora(widget.vehiculoId, {
+                  "evento": eventocontroller.text,
+                  "recursos": recursoscontroller.text,
+                  "verifico": verificocontroller.text,
+                  "fecha": selectedFecha,
+                  "fechaverificacion": selectedFechaVerificacion,
+                }).then((_) {
+                  Navigator.pop(context);
+                });
+              },
+              child: Text(
+                "Insertar",
+                style: TextStyle(fontSize: 16),
+              ),
+            ),
           ],
         ),
       ),

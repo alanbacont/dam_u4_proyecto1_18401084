@@ -14,18 +14,29 @@ class _PaginaVehiculosState extends State<PaginaVehiculos> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          'Vehículos ITTepic',
+          style: TextStyle(
+            color: Colors.black,
+            fontFamily: 'SanFrancisco',
+          ),
+        ),
+        backgroundColor: Colors.grey[200],
+        elevation: 0,
+      ),
       body:Stack(
           children: [
-      Container(
-      decoration: BoxDecoration(
-      image: DecorationImage(
-          image: const AssetImage('assets/images/ITTepic.png'),
-        fit: BoxFit.cover,
-        colorFilter: ColorFilter.mode(Colors.white.withOpacity(0.05), BlendMode.dstATop)
-    ),
-    ),
-    ),
-      FutureBuilder(
+            Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: const AssetImage('assets/images/ITTepic.png'),
+                  fit: BoxFit.cover,
+                  colorFilter: ColorFilter.mode(Colors.white.withOpacity(0.05), BlendMode.dstATop)
+                ),
+              ),
+            ),
+        FutureBuilder(
           future: getVehiculos(),
           builder: ((context, snapshot) {
             if (snapshot.hasData) {
@@ -34,20 +45,26 @@ class _PaginaVehiculosState extends State<PaginaVehiculos> {
                 itemCount: snapshot.data?.length,
                 itemBuilder: (context, index) {
                   return ListTile(
-                    leading: Icon(Icons.directions_car, size: 50, color: Colors.black87,),
-                    title: Text(snapshot.data?[index]['placa'] ?? 'No disponible',
-                      style: TextStyle(fontWeight: FontWeight.bold),),
-                    subtitle: Text(
-                        'Departamento: ${snapshot.data?[index]['depto'] ?? 'No disponible'} \n'
-                            'Trabajador: ${snapshot.data?[index]['trabajador'] ?? 'No disponible'} \n'
-                            'Tipo: ${snapshot.data?[index]['tipo'] ?? 'No disponible'}'
+                    leading: Icon(Icons.directions_car, size: 50, color: Colors.black,),
+                    title: Text('Placa: ${snapshot.data?[index]['placa'] ?? 'No disponible'}',
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
+                    subtitle: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Departamento: ${snapshot.data?[index]['depto'] ?? 'No disponible'}'),
+                        Text('Trabajador: ${snapshot.data?[index]['trabajador'] ?? 'No disponible'}'),
+                        Text('Tipo: ${snapshot.data?[index]['tipo'] ?? 'No disponible'}'),
+                        Divider(color: Colors.grey),
+                      ],
                     ),
+                    isThreeLine: true,
                     onTap: (){
                       showDialog(
                         context: context,
                         builder: (BuildContext context) {
                           return AlertDialog(
-                            title: Text('¿Qué desea hacer con el vehículo con placas ${snapshot.data?[index]['placa']}?'),
+                            title: Text('Vehículo: ${snapshot.data?[index]['placa']}'),
+                            content: Text('¿Qué desea hacer?'),
                             actions: <Widget>[
                               TextButton(
                                 child: Text('Actualizar'),
@@ -80,7 +97,7 @@ class _PaginaVehiculosState extends State<PaginaVehiculos> {
                                 },
                               ),
                               TextButton(
-                                child: Text('Ver Bitácoras de Uso'),
+                                child: Text('Ver Bitácora de Uso'),
                                 onPressed: () async{
                                   await Navigator.push(
                                     context,

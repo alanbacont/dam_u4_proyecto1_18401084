@@ -5,7 +5,6 @@ FirebaseFirestore db = FirebaseFirestore.instance;
 
 Future<List> getVehiculos() async {
   List vehiculo = [];
-  //CollectionReference collectionReferenceVehiculo = db.collection('vehiculo');
   QuerySnapshot queryVehiculo = await db.collection('vehiculo').get();
   for(var doc in queryVehiculo.docs){
     final Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
@@ -91,30 +90,21 @@ Future<List<Map<String, dynamic>>> getBitacorasPorFecha(DateTime fecha) async {
   QuerySnapshot vehiculosSnapshot = await FirebaseFirestore.instance.collection('vehiculo').get();
 
   for (var vehiculo in vehiculosSnapshot.docs) {
-    QuerySnapshot bitacorasSnapshot = await vehiculo.reference.collection('bitacora')
-        .where('fecha', isEqualTo: Timestamp.fromDate(fecha))
-        .get();
-
+    QuerySnapshot bitacorasSnapshot = await vehiculo.reference.collection('bitacora').where('fecha', isEqualTo: Timestamp.fromDate(fecha)).get();
     for (var bitacora in bitacorasSnapshot.docs) {
       bitacorasPorFecha.add(bitacora.data() as Map<String, dynamic>);
     }
   }
-
   return bitacorasPorFecha;
 }
 
 
 Future<List<Map<String, dynamic>>> getBitacorasPorPlaca(String placa) async {
   List<Map<String, dynamic>> bitacoraPorPlaca = [];
-
-  QuerySnapshot queryVehiculo = await db.collection('vehiculo')
-      .where('placa', isEqualTo: placa)
-      .get();
-
+  QuerySnapshot queryVehiculo = await db.collection('vehiculo').where('placa', isEqualTo: placa).get();
   if(queryVehiculo.docs.isNotEmpty){
     String vehiculoId = queryVehiculo.docs.first.id;
     QuerySnapshot queryBitacora = await db.collection('vehiculo').doc(vehiculoId).collection('bitacora').get();
-
     for(var doc in queryBitacora.docs){
       final Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
       final bitacoraDoc = {
@@ -128,7 +118,30 @@ Future<List<Map<String, dynamic>>> getBitacorasPorPlaca(String placa) async {
       bitacoraPorPlaca.add(bitacoraDoc);
     }
   }
-
   await Future.delayed(const Duration(seconds: 2));
   return bitacoraPorPlaca;
+}
+
+Future<List<Map<String, dynamic>>> getVehiculosPorDepartamento(String depto) async {
+  List<Map<String, dynamic>> vehiculosPorDepartamento = [];
+  QuerySnapshot queryVehiculo = await db.collection('vehiculo').where('depto', isEqualTo: depto).get();
+  if(queryVehiculo.docs.isNotEmpty){
+    for(var doc in queryVehiculo.docs){
+      final Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+      final vehiculoDoc = {
+        "combustible": data['combustible'],
+        "depto":data['depto'],
+        "numeroserie":data['numeroserie'],
+        "placa":data['placa'],
+        "resguardadopor":data['resguardadopor'],
+        "tanque":data['tanque'],
+        "tipo":data['tipo'],
+        "trabajador":data['trabajador'],
+        "uid":doc.id,
+      };
+      vehiculosPorDepartamento.add(vehiculoDoc);
+    }
+  }
+  await Future.delayed(const Duration(seconds: 2));
+  return vehiculosPorDepartamento;
 }
