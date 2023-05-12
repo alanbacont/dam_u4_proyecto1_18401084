@@ -26,16 +26,16 @@ class _BusquedaPorPlacaScreenState extends State<BusquedaPorPlacaScreen> {
         elevation: 0,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(20.0),
         child: Column(
           children: <Widget>[
             TextField(
               controller: controller,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Placa del vehículo',
               ),
             ),
-            Padding(padding: EdgeInsets.all(20)),
+            const Padding(padding: EdgeInsets.all(20)),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.indigo[400],
@@ -43,7 +43,7 @@ class _BusquedaPorPlacaScreenState extends State<BusquedaPorPlacaScreen> {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-                textStyle: TextStyle(
+                textStyle: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
@@ -60,9 +60,9 @@ class _BusquedaPorPlacaScreenState extends State<BusquedaPorPlacaScreen> {
                 future: bitacorasFuture,
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Center(child: CircularProgressIndicator());
+                    return const Center(child: CircularProgressIndicator());
                   } else if (snapshot.hasError) {
-                    return Center(child: Text('Ha ocurrido un error'));
+                    return const Center(child: Text('Ha ocurrido un error'));
                   } else {
                     final bitacoras = snapshot.data ?? [];
                     return ListView.builder(

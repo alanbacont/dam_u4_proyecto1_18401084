@@ -36,8 +36,6 @@ class _PaginaBitacorasState extends State<PaginaBitacoras> {
                   return InkWell(
                     onTap: () {
                       print("Card seleccionada: ${snapshot.data?[index]['uid']}");
-
-                      // Llamar al modal bottom sheet
                       showModalBottomSheet<void>(
                         context: context,
                         builder: (BuildContext context) {
@@ -58,7 +56,7 @@ class _PaginaBitacorasState extends State<PaginaBitacoras> {
                                     DateTime? selectedDate = await showDatePicker(
                                       context: context,
                                       initialDate: fechaverificacion,
-                                      firstDate: DateTime(2000),
+                                      firstDate: DateTime(2018),
                                       lastDate: DateTime.now(),
                                     );
                                     if (selectedDate != null) {

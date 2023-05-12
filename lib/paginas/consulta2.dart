@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:dam_u4_proyecto1_18401084/services/firebase_service.dart';
 
@@ -29,7 +28,7 @@ class _BusquedaPorFechaScreenState extends State<BusquedaPorFechaScreen> {
           children: <Widget>[
             ListTile(
               title: Text('Fecha seleccionada: ${selectedDate.toLocal()}'),
-              trailing: Icon(Icons.keyboard_arrow_down),
+              trailing: const Icon(Icons.keyboard_arrow_down),
               onTap: _selectDate,
             ),
             Padding(padding: EdgeInsets.all(8)),
