@@ -1,4 +1,6 @@
 import 'package:dam_u4_proyecto1_18401084/paginas/bitacoras.dart';
+import 'package:dam_u4_proyecto1_18401084/paginas/consulta1.dart';
+import 'package:dam_u4_proyecto1_18401084/paginas/consulta2.dart';
 import 'package:dam_u4_proyecto1_18401084/paginas/insertar_vehiculo.dart';
 import 'package:dam_u4_proyecto1_18401084/paginas/update.dart';
 import 'package:flutter/material.dart';
@@ -24,14 +26,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Coche Tec',
       theme: ThemeData(
-        primarySwatch: Colors.deepOrange,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all<Color>(Colors.deepOrange),
-            foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+          primarySwatch: Colors.deepOrange,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+          elevatedButtonTheme: ElevatedButtonThemeData(
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color>(Colors.deepOrange),
+                foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+              )
           )
-        )
       ),
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
@@ -39,6 +41,8 @@ class MyApp extends StatelessWidget {
         '/': (context) => PaginaPrincipal(),
         '/add': (context) => InsertarVehiculo(),
         '/update': (context) => ActualizarVehiculo(),
+        '/searchByDate': (context) => BusquedaPorFechaScreen(),
+        '/searchByPlate': (context) => BusquedaPorPlacaScreen(),
       },
     );
   }

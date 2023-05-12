@@ -14,7 +14,18 @@ class _PaginaVehiculosState extends State<PaginaVehiculos> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: FutureBuilder(
+      body:Stack(
+          children: [
+      Container(
+      decoration: BoxDecoration(
+      image: DecorationImage(
+          image: const AssetImage('assets/images/ITTepic.png'),
+        fit: BoxFit.cover,
+        colorFilter: ColorFilter.mode(Colors.white.withOpacity(0.05), BlendMode.dstATop)
+    ),
+    ),
+    ),
+      FutureBuilder(
           future: getVehiculos(),
           builder: ((context, snapshot) {
             if (snapshot.hasData) {
@@ -101,6 +112,8 @@ class _PaginaVehiculosState extends State<PaginaVehiculos> {
               );
             }
           })),
+    ]
+    ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async{
           await Navigator.pushNamed(context, '/add');

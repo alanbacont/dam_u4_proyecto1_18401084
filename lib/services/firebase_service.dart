@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:intl/intl.dart';
 
 FirebaseFirestore db = FirebaseFirestore.instance;
 
@@ -21,7 +22,7 @@ Future<List> getVehiculos() async {
     };
     vehiculo.add(car);
   }
-  await Future.delayed(const Duration(seconds: 2));
+  await Future.delayed(const Duration(seconds: 1));
   return vehiculo;
 }
 
@@ -83,4 +84,51 @@ Future<void> actualizarBitacora(String vehiculoId, String bitacoraId, String ver
     'verifico': verifico,
     'fechaverificacion': fechaverificacion,
   });
+}
+
+Future<List<Map<String, dynamic>>> getBitacorasPorFecha(DateTime fecha) async {
+  List<Map<String, dynamic>> bitacorasPorFecha = [];
+  QuerySnapshot vehiculosSnapshot = await FirebaseFirestore.instance.collection('vehiculo').get();
+
+  for (var vehiculo in vehiculosSnapshot.docs) {
+    QuerySnapshot bitacorasSnapshot = await vehiculo.reference.collection('bitacora')
+        .where('fecha', isEqualTo: Timestamp.fromDate(fecha))
+        .get();
+
+    for (var bitacora in bitacorasSnapshot.docs) {
+      bitacorasPorFecha.add(bitacora.data() as Map<String, dynamic>);
+    }
+  }
+
+  return bitacorasPorFecha;
+}
+
+
+Future<List<Map<String, dynamic>>> getBitacorasPorPlaca(String placa) async {
+  List<Map<String, dynamic>> bitacoraPorPlaca = [];
+
+  QuerySnapshot queryVehiculo = await db.collection('vehiculo')
+      .where('placa', isEqualTo: placa)
+      .get();
+
+  if(queryVehiculo.docs.isNotEmpty){
+    String vehiculoId = queryVehiculo.docs.first.id;
+    QuerySnapshot queryBitacora = await db.collection('vehiculo').doc(vehiculoId).collection('bitacora').get();
+
+    for(var doc in queryBitacora.docs){
+      final Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+      final bitacoraDoc = {
+        "fecha": DateFormat('yyyy-MM-dd – kk:mm').format(data['fecha'].toDate()),
+        "evento":data['evento'],
+        "recursos":data['recursos'],
+        "verifico":data['verifico'],
+        "fechaverificacion":data['fechaverificacion'],
+        "uid":doc.id,
+      };
+      bitacoraPorPlaca.add(bitacoraDoc);
+    }
+  }
+
+  await Future.delayed(const Duration(seconds: 2));
+  return bitacoraPorPlaca;
 }
